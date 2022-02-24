@@ -5,17 +5,18 @@ The purpose of this Hackathon is to implement the proposed design in 28 nm PDK (
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Working](#working)
-3. [Reference Circuit](#reference-circuit)
-4. [Implementation](#implementation)
-5. [Schematic Netlist](#schematic-netlist)
-6. [Simulation result](#simulation-result)
-7. [Challenge](#challenge)
-8. [Troubleshooting](#troubleshooting)
-9. [Limitations](#limitations)
-10. [References](#references)
-11. [Acknowledgements](#acknowledgements)
-12. [Author](#author)
+2. [Typical LDO voltage regulator](#Typical-LDO-voltage-regulator)
+3. [Working](#working)
+4. [Reference Circuit](#reference-circuit)
+5. [Implementation](#implementation)
+6. [Schematic Netlist](#schematic-netlist)
+7. [Simulation result](#simulation-result)
+8. [Challenge](#challenge)
+9. [Troubleshooting](#troubleshooting)
+10. [Limitations](#limitations)
+11. [References](#references)
+12. [Acknowledgements](#acknowledgements)
+13. [Author](#author)
 
 ## Introduction
 
@@ -24,6 +25,14 @@ POWER management is a very important issue in portable  electronic applications.
 The choice of a voltage regulator for a given application offers numerous design tradeoff considerations.The emphasis on efficiency has made low dropout (LDO) regulators the most popular class of linear regulators. But this increase in efficiency is achieved at the cost of a compromise in stability of the regulator. LDO regulators have high output impedance; this impedance, along with the load capacitance, creates a low frequency pole and decreases the overall phase margin.
 
 This design gives an overview of stability problems in LDO voltage regulators and presents a modified LDO voltage regulator topology. Although the compensating circuit is very simple, the proposed topology successfully overcomes the problem of stability without significantly increasing the power consumption or die area.
+
+
+## Typical-LDO-voltage-regulator
+
+![image](https://user-images.githubusercontent.com/20799294/155582127-fcf582cd-5070-435d-a4b7-a5d2079b0fc8.png)
+
+
+
 
 ## Working
 
