@@ -5,7 +5,7 @@ The purpose of this Hackathon is to implement the proposed design in 28 nm PDK (
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Typical LDO voltage regulator](#Typical-LDO-voltage-regulator)
+2. [Problem with Typical LDO voltage regulator](#Problem-with-Typical-LDO-voltage-regulator)
 3. [Working](#working)
 4. [Reference Circuit](#reference-circuit)
 5. [Implementation](#implementation)
@@ -27,7 +27,7 @@ The choice of a voltage regulator for a given application offers numerous design
 This design gives an overview of stability problems in LDO voltage regulators and presents a modified LDO voltage regulator topology. Although the compensating circuit is very simple, the proposed topology successfully overcomes the problem of stability without significantly increasing the power consumption or die area.
 
 
-## Typical-LDO-voltage-regulator
+## Problem-with-Typical-LDO-voltage-regulator
 
 ![image](https://user-images.githubusercontent.com/20799294/155582127-fcf582cd-5070-435d-a4b7-a5d2079b0fc8.png)
 
