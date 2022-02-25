@@ -276,13 +276,23 @@ c5 icg_out gnd! c=0.01f
 </p>.
 
 <p align="center">
+	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155725336-9aa2fcb6-fbb9-4bb6-ba8b-7799c032ef16.png" alt="refference ICG Trans"> 
+	<h5 align="center">Figure 10: LDO output voltage and load current over the Parametric sweep of Rload .</h5>
+</p>.
+
+<p align="center">
+	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155725493-37c0a2ce-a8d5-42ca-a4e3-6ffea36d46fd.png" alt="refference ICG Trans"> 
+	<h5 align="center">Figure 10: Tabulated values of LDO output voltage and load current over the Parametric sweep of Rload .</h5>
+</p>.
+
+<p align="center">
 	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155724585-b6b5b6a6-4c77-4599-bd81-6c255663d1b9.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 10: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA with improved compensation.</h5>
+	<h5 align="center">Figure 11: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA with improved compensation.</h5>
 </p>.
 
 <p align="center">
 	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155724285-fbf29eee-ad57-4b43-b154-0b3219819333.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 11: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA without improved compensation.</h5>
+	<h5 align="center">Figure 12: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA without improved compensation.</h5>
 </p>.
 
 
