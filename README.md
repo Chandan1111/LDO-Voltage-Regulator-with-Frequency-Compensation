@@ -169,98 +169,80 @@ This circuit arrangement is also min pulse width violation free as compared to o
 The final netlist is as follows: 
 
 ```
-*  Generated for: PrimeSim
-*  Design library name: ICG_28nm
-*  Design cell name: ICG_tb
-*  Design view name: schematic
-.lib 'saed32nm.lib' TT
-
 *Custom Compiler Version S-2021.09
-*Sun Feb 20 02:10:22 2022
+*Fri Feb 25 16:24:11 2022
 
-.global gnd!
+*.SCALE METER
+*.LDD
+.GLOBAL gnd!
 ********************************************************************************
-* Library          : ICG_28nm
-* Cell             : INV
+* Library          : LDO_regulator
+* Cell             : error_amplifier
 * View             : schematic
-* View Search List : hspice hspiceD schematic spice veriloga
-* View Stop List   : hspice hspiceD
+* View Search List : auCdl schematic
+* View Stop List   : auCdl
 ********************************************************************************
-.subckt inv a vdd vss y
-xm0 y a vdd vdd p105 w=0.24u l=0.03u nf=1 m=1
-xm1 y a vss vss n105 w=0.12u l=0.03u nf=1 m=1
-.ends inv
+.subckt error_amplifier vdd vinm vinp vout
+*.PININFO vdd:I vinm:I vinp:I vout:O
+MM4 net58 net58 gnd! gnd! n105_lvt w=0.1u l=0.04u nf=1 m=1
+MM3 vout net58 gnd! gnd! n105_lvt w=0.1u l=0.04u nf=1 m=1
+MM2 net46 net58 gnd! gnd! n105_lvt w=0.1u l=0.04u nf=1 m=1
+MM1 net33 vinp net46 gnd n105_lvt w=0.2u l=0.08u nf=1 m=1
+MM0 net24 vinm net46 gnd n105_lvt w=0.2u l=0.08u nf=1 m=1
+MM7 net24 net24 vdd vdd p105_lvt w=0.2u l=0.04u nf=1 m=1
+MM6 net33 net24 vdd vdd p105_lvt w=0.2u l=0.04u nf=1 m=1
+MM5 vout net33 vdd vdd p105_lvt w=0.4u l=0.04u nf=1 m=1
+.ends error_amplifier
 
 ********************************************************************************
-* Library          : ICG_28nm
-* Cell             : TG
+* Library          : LDO_regulator
+* Cell             : vccs_freq
 * View             : schematic
-* View Search List : hspice hspiceD schematic spice veriloga
-* View Stop List   : hspice hspiceD
+* View Search List : auCdl schematic
+* View Stop List   : auCdl
 ********************************************************************************
-.subckt tg a b bbar y
-xm2 a bbar y a p105 w=0.24u l=0.03u nf=1 m=1
-xm1 a b y a n105 w=0.12u l=0.03u nf=1 m=1
-.ends tg
+.subckt vccs_freq iout vdd vout
+*.PININFO iout:O vdd:I vout:I
+MM24 net117 Vbp net107 vdd p105_lvt w=0.1u l=0.1u nf=1 m=1
+MM23 iout Vbp net110 vdd p105_lvt w=0.15u l=0.03u nf=1 m=1
+MM22 net107 net117 vdd vdd p105_lvt w=0.1u l=0.1u nf=1 m=1
+MM21 net110 net117 vdd vdd p105_lvt w=0.15u l=0.03u nf=1 m=1
+MM7 net24 net24 vdd vdd p105_lvt w=0.1u l=0.04u nf=1 m=1
+MM6 net104 net24 vdd vdd p105_lvt w=0.1u l=0.04u nf=1 m=1
+CC25 net96 gnd! 1p $[CP]
+MM20 iout Vbn net84 gnd n105_lvt w=0.15u l=0.03u nf=1 m=1
+MM19 net84 net39 gnd! gnd! n105_lvt w=0.15u l=0.03u nf=1 m=1
+MM17 net98 net39 gnd! gnd! n105_lvt w=0.1u l=0.1u nf=1 m=1
+MM18 net96 Vbn net86 gnd n105_lvt w=0.1u l=0.1u nf=1 m=1
+MM16 vdd vout net98 vdd n105_lvt w=0.1u l=0.05u nf=1 m=1
+MM5 net117 net104 net96 gnd n105_lvt w=0.75u l=0.03u nf=1 m=1
+MM4 net39 net39 gnd! gnd! n105_lvt w=0.1u l=0.1u nf=1 m=1
+MM3 net86 net39 gnd! gnd! n105_lvt w=0.1u l=0.1u nf=1 m=1
+MM2 net93 net39 gnd! gnd! n105_lvt w=0.1u l=0.1u nf=1 m=1
+MM1 net104 net96 net93 gnd n105_lvt w=0.1u l=0.04u nf=1 m=1
+MM0 net24 net98 net93 gnd n105_lvt w=0.1u l=0.04u nf=1 m=1
+.ends vccs_freq
 
 ********************************************************************************
-* Library          : ICG_28nm
-* Cell             : AND
+* Library          : LDO_regulator
+* Cell             : LDO_reg
 * View             : schematic
-* View Search List : hspice hspiceD schematic spice veriloga
-* View Stop List   : hspice hspiceD
+* View Search List : auCdl schematic
+* View Stop List   : auCdl
 ********************************************************************************
-.subckt and a b out vdd vss
-xm1 net17 b vdd vdd p105 w=0.24u l=0.03u nf=1 m=1
-xm0 net17 a vdd vdd p105 w=0.24u l=0.03u nf=1 m=1
-xm4 net17 a net19 net19 n105 w=0.12u l=0.03u nf=1 m=1
-xm5 net19 b vss vss n105 w=0.12u l=0.03u nf=1 m=1
-xi6 net17 vdd vss out inv
-.ends and
+.subckt LDO_reg Vout Vref vdd
+*.PININFO Vout:O Vref:I vdd:I
+XI0 net33 Vref net30 net34 error_amplifier
+XI1 net30 net29 Vout vccs_freq
+RR8 Vout gnd! 'Rload' $[RP]
+RR5 net30 gnd! 5meg $[RP]
+RR4 Vout net30 6.65meg $[RP]
+CC9 Vout gnd! 2.2u $[CP]
+MM13 Vout net34 vdd vdd p105_lvt w=0.182000m l=0.03u nf=52 m=1
+.ends LDO_reg
 
-********************************************************************************
-* Library          : ICG_28nm
-* Cell             : ICG
-* View             : schematic
-* View Search List : hspice hspiceD schematic spice veriloga
-* View Stop List   : hspice hspiceD
-********************************************************************************
-.subckt icg clk enable icg_clk vdd vss
-xi6 clk vdd vss net20 inv
-xi2 net24 vdd vss net19 inv
-xi1 net13 vdd vss net24 inv
-xi0 enable vdd vss net16 inv
-xi4 net19 clk net20 net13 tg
-xi3 net16 net20 clk net13 tg
-xi5 net24 clk icg_clk vdd vss and
-.ends icg
 
-********************************************************************************
-* Library          : ICG_28nm
-* Cell             : ICG_tb
-* View             : schematic
-* View Search List : hspice hspiceD schematic spice veriloga
-* View Stop List   : hspice hspiceD
-********************************************************************************
-xi0 clk enable icg_out net6 gnd! icg
-v2 net6 gnd! dc=0.9
-v4 enable gnd! dc=0 pulse ( 0 0.9 18n 5n 5n 100n 300n )
-v3 clk gnd! dc=0 pulse ( 0 0.9 2n 20p 20p 25n 51n )
-c5 icg_out gnd! c=0.01f
 
-.tran '50n' '500n' name=tran
-
-.option primesim_remove_probe_prefix = 0
-.probe v(*) i(*) level=1
-.probe tran v(clk) v(enable) v(icg_out)
-
-.temp 25
-
-.option primesim_output=wdf
-
-.option parhier = LOCAL
-
-.end
 ```
 
 - Netlist is generated by using Custom Compiler.
@@ -286,17 +268,29 @@ c5 icg_out gnd! c=0.01f
 </p>.
 
 <p align="center">
-	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155724585-b6b5b6a6-4c77-4599-bd81-6c255663d1b9.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 11: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA with improved compensation.</h5>
+	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155724285-fbf29eee-ad57-4b43-b154-0b3219819333.png" alt="refference ICG Trans"> 
+	<h5 align="center">Figure 11: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA without improved compensation.</h5>
 </p>.
 
 <p align="center">
-	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155724285-fbf29eee-ad57-4b43-b154-0b3219819333.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 12: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA without improved compensation.</h5>
+	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155724585-b6b5b6a6-4c77-4599-bd81-6c255663d1b9.png" alt="refference ICG Trans"> 
+	<h5 align="center">Figure 12: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA with improved compensation.</h5>
 </p>.
 
+<p align="center">
+	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155751928-432bd821-2512-4281-a1aa-345d39d223eb.png" alt="refference ICG Trans"> 
+	<h5 align="center">Figure 13: Transient ouput voltage of the LDO regulator as Vref is varied without improved compensation.</h5>
+</p>.
 
-![LDO_ipulse_w_freq]()
+<p align="center">
+	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155751939-b933dd0d-24e2-4236-836b-bc5b0dff71c0.png" alt="refference ICG Trans"> 
+	<h5 align="center">Figure 14: Transient ouput voltage of the LDO regulator as Vref is varied with improved compensation.</h5>
+</p>.
+
+<p align="center">
+	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155752589-022273c4-8099-4c7b-959b-eac66f93f30f.png" alt="refference ICG Trans"> 
+	<h5 align="center">Figure 15: Start-up time of the regulator for a load current of 2 mA..</h5>
+</p>.
 
 
 ## Challenge
