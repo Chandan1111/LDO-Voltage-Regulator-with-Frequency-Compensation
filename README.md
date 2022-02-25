@@ -96,7 +96,7 @@ The important design consideration for the pass transistor is the dropout voltag
 ### Schematic of LDO voltage regulator topology with proposed frequency compensation.
 
 <p align="center">
-	<img width="500" src="https://user-images.githubusercontent.com/20799294/155721410-34830e30-5fda-4fbd-8e00-908608cd165a.png" alt="Transistor level implementation of amplifier"> 
+	<img width="550" src="https://user-images.githubusercontent.com/20799294/155721410-34830e30-5fda-4fbd-8e00-908608cd165a.png" alt="Transistor level implementation of amplifier"> 
 	<h5 align="center">Figure 5: Schematic of LDO voltage regulator topology with proposed frequency compensation.</h5>
 </p>
 
@@ -108,7 +108,7 @@ The important design consideration for the pass transistor is the dropout voltag
 </p>
 
 <p align="center">
-	<img width="500" src="https://user-images.githubusercontent.com/20799294/155722514-82b5f99a-9c02-41bb-a9bc-f388c28d461e.png" alt="Symbol of Voltage controlled current source (VCCS)"> 
+	<img width="400" src="https://user-images.githubusercontent.com/20799294/155722514-82b5f99a-9c02-41bb-a9bc-f388c28d461e.png" alt="Symbol of Voltage controlled current source (VCCS)"> 
 	<h5 align="center">Figure 7: Symbol of Voltage controlled current source (VCCS).</h5>
 </p>
 
@@ -120,7 +120,7 @@ The important design consideration for the pass transistor is the dropout voltag
 </p>
 
 <p align="center">
-	<img width="500" src="https://user-images.githubusercontent.com/20799294/155723188-614880f0-df92-44fb-bd89-6f25390d0b9b.png" alt="Symbol of Error Amplifier"> 
+	<img width="350" src="https://user-images.githubusercontent.com/20799294/155723188-614880f0-df92-44fb-bd89-6f25390d0b9b.png" alt="Symbol of Error Amplifier"> 
 	<h5 align="center">Figure 9: Symbol of Error Amplifier.</h5>
 </p>
 
