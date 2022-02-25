@@ -11,13 +11,9 @@ The purpose of this Hackathon is to implement the proposed design in 28 nm PDK (
 5. [Error Amplifier](#Error-Amplifier)
 6. [Pass Transistor](#Pass-Transistor)
 7. [Working](#working)
-8. [Reference Circuit](#reference-circuit)
 9. [Implementation](#implementation)
 10. [Schematic Netlist](#schematic-netlist)
 11. [Simulation result](#simulation-result)
-12. [Challenge](#challenge)
-13. [Troubleshooting](#troubleshooting)
-14. [Limitations](#limitations)
 15. [References](#references)
 16. [Acknowledgements](#acknowledgements)
 17. [Author](#author)
@@ -33,7 +29,14 @@ This design gives an overview of stability problems in LDO voltage regulators an
 
 ## Problem-with-Typical-LDO-voltage-regulator
 
-![image](https://user-images.githubusercontent.com/20799294/155582127-fcf582cd-5070-435d-a4b7-a5d2079b0fc8.png)
+A closer look of a typical LDO voltage regulator reveals the fact that there are two low-frequency poles that need to be taken into consideration in evaluating the frequency response of the LDO’s closed-loop transfer function. One of the poles lies at the output of the regulator and the other one at the gate of the pass transistor.
+There are, at least, two additional parasitic poles present in the LDO regulator. The third pole is lumped to the noninverting terminal of the error amplifier as a result of the input stage parasitic capacitors.
+The error amplifier contributes with an internal pole since two-stage or cascode amplifiers are used to increase the amplifier’s dc gain. The system is therefore potentially unstable.
+
+<p align="center">
+	<img width="500" src="https://user-images.githubusercontent.com/20799294/155582127-fcf582cd-5070-435d-a4b7-a5d2079b0fc8.png" alt="Typical LDO voltage regulator."> 
+	<h5 align="center">Figure 1: Typical LDO voltage regulator.</h5>
+</p>
 
 
 ## Capacitive-Feedback-for-Frequency-Compensation
@@ -84,29 +87,9 @@ The important design consideration for the pass transistor is the dropout voltag
 
 ## Working
 
-This circuit is a Latch based Integrated Clock gating cell (ICG), which produces a clock pulse only whenever a high enable signal is encountered. 2 Transmission gates (2 PMOS, 2 NMOS), 3 Inverters (3 PMOS, 3 NMOS) and 1 AND gate (3 PMOS, 3 NMOS), are used to construct this circuit. To implement negative Dlatch, Transmission gates logic is used. Simply this circuit comprise of negative Dlatch and And gate.
-Here when CLK is 0, Enable is (0,1), g1 is ON and output from g1 is (1,0), g2 passes (1,0), output from g4 is (0,1), output of g5 is (1,0), g3 is OFF and will not allow any signal to pass through it, output of g6 is 0 (i.e., ICG_CLK = 0), now when CLK is 1, Enable is (0,1), g1 is OFF and will not allow any signal to pass through it, now g3 is ON now it will pass previously store inverted value, now the output from g4 is non-inverted value now output of g6 is inverted value (i.e., ICG_CLK = Enable)
-
-<p align="center">
-	<img width="400" src="Images/Dlatch.png" alt="Negetive level sensitive latch"> 
-	<h5 align="center">Figure 1: Latch based ICG</h5>
-</p>
-
-In summary when CLK = 0, Dlatch is enabled hence output from Dlatch will change as per enable signal, due to AND gate, the output of ICG = 0 as one of input of AND is 0, When CLK = 1, Dlatch is disabled hence output will be of previous stored value as one of input of AND is 1.
-This circuit arrangement is also min pulse width violation free as compared to only AND based clock gating. Latch based clock gating passes one complete cycle of clock whenever the enable signal is High and stops cycle for which enable signal is low.
 
 
-## Reference Circuit
 
-<p align="center">
-	<img width="600" src="Images/ref_ICG_sch.png" alt="refference ICG Schematic"> 
-	<h5 align="center">Figure 2: Gate level schematic</h5>
-</p>
-
-<p align="center">
-	<img width="1500" src="Images/ref_ICG_trans.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 3: Transistor level schematic</h5>
-	</p>
 
 ## Implementation 
 
@@ -142,27 +125,6 @@ This circuit arrangement is also min pulse width violation free as compared to o
 </p>
 
 
-
-
-
-- Integrated clock gating is implemented by using Inverter, AND and Transmission gate.
-- The Aspect ratio of pMOS and nMOS is choosen such a way that it has approximate same transaction and fall time (i.e., The Aspect ratio(W/L) of pMOS is 0.03um/0.24um &  nMOS is 0.03um/0.12um).
-- Inverter, AND and Transmission gate are implemeted first then by the help of these sub-design ICG is realised.
-- Total transistors used = 18 (9 nMOS & 9 pMOS).
-- The MOSFET model chosen is TT model from 28nm PDK.
-
-<p align="center">
-	<img width="1500" src="Images/ICG.png" alt="Integrated Clock Gating schematic"> 
-	<h5 align="center">Figure 4: Integrated Clock Gating schematic</h5>
-	<img width="1500" src="Images/ICG_tb.png" alt="Integrated Clock Gating Testbench"> 
-	<h5 align="center">Figure 5: Integrated Clock Gating Testbench</h5>
-	<img width="1500" src="Images/AND.png" alt="And gate schematic"> 
-	<h5 align="center">Figure 6: AND gate schematic</h5>
-	<img width="1500" src="Images/Inverter.png" alt="Inverter schematic"> 
-	<h5 align="center">Figure 7: Inverter schematic</h5>
-	<img width="1500" src="Images/TG.png" alt="Transmission gate schematic"> 
-	<h5 align="center">Figure 8: Transmission gate schematic</h5>
-	</p>
 
 ## Schematic Netlist
 
@@ -241,8 +203,6 @@ CC9 Vout gnd! 2.2u $[CP]
 MM13 Vout net34 vdd vdd p105_lvt w=0.182000m l=0.03u nf=52 m=1
 .ends LDO_reg
 
-
-
 ```
 
 - Netlist is generated by using Custom Compiler.
@@ -293,22 +253,13 @@ MM13 Vout net34 vdd vdd p105_lvt w=0.182000m l=0.03u nf=52 m=1
 </p>.
 
 
-## Challenge
-- The real challange is to adjust W/L ratio of pMos and nMos such that both have approximately equal rise and fall time.
-
-## Troubleshooting
-- After a lot of Trail and error found the W/L values of pMOS and nMOS such that both have approximately equal rise and fall time.
-
-## Limitations
-- Unnecessary using ICG's on design may increase overall area of the chip, So we have apply to flops having common enable signal which are more than bit width value.
-
 ## References
 
-- [Synopsys solvnet documentation ](https://spdocs.synopsys.com/dow_retrieve/latest/dg/dcolh/Content/pwcug/pdf/pwcug.pdf)
+- [A Frequency Compensation Scheme for LDO Voltage Regulators ](https://ieeexplore.ieee.org/document/1304961)
 
-- [A Novel Glitch-Free Integrated Clock Gating Cell for High Reliability - Emre Salman](https://www.researchgate.net/publication/332810977_A_Novel_Glitch-Free_Integrated_Clock_Gating_Cell_for_High_Reliability)
+- [Low dropout voltage regulator with non-Miller frequency compensation](https://patentimages.storage.googleapis.com/71/c9/da/48135b5c03c914/US6710583.pdf)
 
-- [Signoff Semi blog](http://www.signoffsemi.com/synthesis/)
+- [Designing With Low-Dropout Voltage Regulators](http://ww1.microchip.com/downloads/en/devicedoc/ldobk.pdf)
 
 ## Acknowledgements
 
@@ -318,4 +269,4 @@ MM13 Vout net34 vdd vdd p105_lvt w=0.182000m l=0.03u nf=52 m=1
 
 ## Author
 
-[Dinesh Patnaik](https://github.com/dineshp999),Bachelor of Technology in Electronics and Communication Engineering
+[Chandan K](https://github.com/Chandan1111),MTech in VLSI Design at Vellore Institute of Technology
