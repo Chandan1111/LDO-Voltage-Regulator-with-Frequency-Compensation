@@ -7,18 +7,20 @@ The purpose of this Hackathon is to implement the proposed design in 28 nm PDK (
 1. [Introduction](#introduction)
 2. [Problem with Typical LDO voltage regulator](#Problem-with-Typical-LDO-voltage-regulator)
 3. [Capacitive Feedback for Frequency Compensation](#Capacitive-Feedback-for-Frequency-Compensation)
-4. [A) Design Considerations for the VCCS](# A) Design Considerations for the VCCS)
-5. [Working](#working)
-6. [Reference Circuit](#reference-circuit)
-7. [Implementation](#implementation)
-8. [Schematic Netlist](#schematic-netlist)
-9. [Simulation result](#simulation-result)
-10. [Challenge](#challenge)
-11. [Troubleshooting](#troubleshooting)
-12. [Limitations](#limitations)
-13. [References](#references)
-14. [Acknowledgements](#acknowledgements)
-15. [Author](#author)
+4. [Design Considerations for the VCCS](#Design-Considerations-for-the-VCCS)
+5. [Error Amplifier](#Error-Amplifier)
+6. [Pass Transistor](#Pass-Transistor)
+7. [Working](#working)
+8. [Reference Circuit](#reference-circuit)
+9. [Implementation](#implementation)
+10. [Schematic Netlist](#schematic-netlist)
+11. [Simulation result](#simulation-result)
+12. [Challenge](#challenge)
+13. [Troubleshooting](#troubleshooting)
+14. [Limitations](#limitations)
+15. [References](#references)
+16. [Acknowledgements](#acknowledgements)
+17. [Author](#author)
 
 ## Introduction
 
@@ -44,8 +46,41 @@ The capacitor  is split into two frequency-dependent voltage-controlled current 
 	<img width="500" src="https://user-images.githubusercontent.com/20799294/155711189-ea65db89-bfe8-4918-9830-8b7f14f0f53a.png" alt="LDO voltage regulator topology with proposed frequency compensation"> 
 	<h5 align="center">Figure 2: LDO voltage regulator topology with proposed frequency compensation</h5>
 </p>
-## A Design Considerations for the VCCS			
 
+## Design-Considerations-for-the-VCCS
+
+The transistor-level design challenge lies in realizing the frequency dependent VCCS with minimum die area and minimum power consumption while retaining the VCCS characteristics up to crossover  frequency of the loop  transfer function. The  simplest  realization of  this  circuit  and  transconductance gain enhanced structure is shown in Fig. 2(a) and 2(b) respectively.The bias current can be selected to meet the objective of minimal standby current; the limit is however determined by the frequency of its parasitic pole.
+
+<p align="center">
+	<img width="500" src="https://user-images.githubusercontent.com/20799294/155713863-b5b07387-6fbf-489c-8b5f-af0f3b091978.png" alt="LDO voltage regulator topology with proposed frequency compensation"> 
+	<h5 align="center">Figure 2: Simplest realization of frequency dependent VCCS. (a) Simplest realization and (b) transconductance gain enhanced structure.</h5>
+</p>
+
+We need to improve the effective transconductance by increasing the bias current drastically increases the power consumption ( scales proportional to the square root of bias current). Therefore, alternate Gm enhancement techniques should be explored.
+The transistor realization is shown in Fig. 3. The circuit consists of three parts. The first stage acts as a level-shifting buffer needed to down-shift the dc level which can be very close to  the  supply  voltage due to LDO characteristics of the regulator. The next stage is with enhancing OTA in feedback. The third stage consists of a 1:5 current mirror and bias sources that together perform  the  function of pumping the ac current through output. We can take advantage of a multiplication factor in the current mirror to increase the effective capacitance from 5 to 25 pF. Cascode current mirror and cascode bias current sources (bias by proper dc voltages and ) are used such that offset current is not significant enough to upset the dc output voltage of the regulator.
+
+<p align="center">
+	<img width="500" src="https://user-images.githubusercontent.com/20799294/155715916-4db711cd-1797-46e6-8a12-5e8218ad71c9.png" alt="Transistor level implementation of VCCS with G enhancement"> 
+	<h5 align="center">Figure 3: Transistor level implementation of VCCS with Gm enhancement.</h5>
+</p>
+
+## Error-Amplifier
+
+The error amplifier design demands careful attention to meet the required loop gain, transient response and stability. 
+Ideal requirements of the error amplifier are: 1) high dc gain to ensure high loop gain (typically) for all loads; 
+					       2) low output impedance to keep the pole at the input of the pass transistor at high frequencies; 
+					       3) positive rail output to turn offpass transistor when the load turns off; and 
+					       4) internal poles at significantly higher frequencies compared to the cross over loop frequency.
+High output impedance of the error amplifier pushes the pole at the input of the pass transistor Wp2 to lower frequencies. Wp2 is pushed to higher frequencies by limiting the output impedance of the error amplifier; hence the use of a two-stage error amplifier is a must.
+
+<p align="center">
+	<img width="500" src="https://user-images.githubusercontent.com/20799294/155718678-27dd0311-fc2b-4674-9ede-64ff72bd6c04.png" alt="Transistor level implementation of amplifier"> 
+	<h5 align="center">Figure 4: Transistor level implementation of error amplifier.</h5>
+</p>
+
+## Pass-Transistor
+
+The important design consideration for the pass transistor is the dropout voltage. Increasing the size of the pass transistor lowers the dropout voltage for a particular output current, but wider pass transistor introduces higher input capacitance making it difficult to meet stability and slew rate requirements. The design presented uses a pass transistor of W/L ratio of 6000 that gives a maximum output current of 100 mA with a dropout voltage of 0.5 V. Minimum length is not used as it makes the transistor output impedance unacceptably low at high load currents
 
 ## Working
 
@@ -73,7 +108,42 @@ This circuit arrangement is also min pulse width violation free as compared to o
 	<h5 align="center">Figure 3: Transistor level schematic</h5>
 	</p>
 
-## Implementation
+## Implementation 
+
+### Schematic of LDO voltage regulator topology with proposed frequency compensation.
+
+<p align="center">
+	<img width="500" src="https://user-images.githubusercontent.com/20799294/155721410-34830e30-5fda-4fbd-8e00-908608cd165a.png" alt="Transistor level implementation of amplifier"> 
+	<h5 align="center">Figure 5: Schematic of LDO voltage regulator topology with proposed frequency compensation.</h5>
+</p>
+
+### Schematic and symbol of Voltage controlled current source (VCCS) .
+
+<p align="center">
+	<img width="500" src="https://user-images.githubusercontent.com/20799294/155722237-004e5786-a87b-48bf-b52d-f80b4eec59a2.png" alt="Schematic of Voltage controlled current source (VCCS)"> 
+	<h5 align="center">Figure 6: Schematic of Voltage controlled current source (VCCS).</h5>
+</p>
+
+<p align="center">
+	<img width="500" src="https://user-images.githubusercontent.com/20799294/155722514-82b5f99a-9c02-41bb-a9bc-f388c28d461e.png" alt="Symbol of Voltage controlled current source (VCCS)"> 
+	<h5 align="center">Figure 7: Symbol of Voltage controlled current source (VCCS).</h5>
+</p>
+
+### Schematic and symbol of Error Amplifier .
+
+<p align="center">
+	<img width="500" src="https://user-images.githubusercontent.com/20799294/155723177-adb88f20-6183-4933-9e7f-6b8a3bc6e58c.png" alt="Schematic of Error Amplifier"> 
+	<h5 align="center">Figure 8: Schematic of Error Amplifier.</h5>
+</p>
+
+<p align="center">
+	<img width="500" src="https://user-images.githubusercontent.com/20799294/155723188-614880f0-df92-44fb-bd89-6f25390d0b9b.png" alt="Symbol of Error Amplifier"> 
+	<h5 align="center">Figure 9: Symbol of Error Amplifier.</h5>
+</p>
+
+
+
+
 
 - Integrated clock gating is implemented by using Inverter, AND and Transmission gate.
 - The Aspect ratio of pMOS and nMOS is choosen such a way that it has approximate same transaction and fall time (i.e., The Aspect ratio(W/L) of pMOS is 0.03um/0.24um &  nMOS is 0.03um/0.12um).
@@ -201,9 +271,23 @@ c5 icg_out gnd! c=0.01f
 - Custom Compiler Waveform
 
 <p align="center">
-	<img width="1100" src="Images/Waveform.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 9: Waveform</h5>
+	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155723745-067eacce-52c3-46be-9a14-50ca24175b74.png" alt="refference ICG Trans"> 
+	<h5 align="center">Figure 9: Experimental LDO output voltage as function of the load current.</h5>
 </p>.
+
+<p align="center">
+	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155724585-b6b5b6a6-4c77-4599-bd81-6c255663d1b9.png" alt="refference ICG Trans"> 
+	<h5 align="center">Figure 10: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA with improved compensation.</h5>
+</p>.
+
+<p align="center">
+	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155724285-fbf29eee-ad57-4b43-b154-0b3219819333.png" alt="refference ICG Trans"> 
+	<h5 align="center">Figure 11: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA without improved compensation.</h5>
+</p>.
+
+
+![LDO_ipulse_w_freq]()
+
 
 ## Challenge
 - The real challange is to adjust W/L ratio of pMos and nMos such that both have approximately equal rise and fall time.
