@@ -22,13 +22,13 @@ The purpose of this Hackathon is to implement the proposed design in 28 nm PDK (
 17. [Author](#author)
 
 ## Introduction
-
+	
 POWER management  is  a very important  issue  in  portable  electronic applications. The  need for  multiple  on-chip  voltage levels makes voltage regulators a critical part of an electronic system design. Portable electronic devices like cell phones require very efficient power management to increase the battery life whereas high-speed microprocessors need stable voltages that can supply fast varying currents on the order of few amperes.
 
 The choice of a voltage regulator for a given  application offers numerous design tradeoff considerations.The emphasis on efficiency has made low dropout (LDO) regulators the most popular class of linear regulators. But this increase in efficiency is achieved at the cost of a compromise in stability of the regulator. LDO regulators have high output impedance; this impedance, along with the load capacitance, creates a low frequency pole and decreases the overall phase margin.
 
 This design gives an overview of stability problems in LDO voltage regulators and presents a modified LDO voltage regulator topology. Although the compensating circuit is very simple, the proposed topology successfully overcomes the problem of stability without significantly increasing the power consumption or die area.
-
+	
 
 ## Problem-with-Typical-LDO-voltage-regulator
 
