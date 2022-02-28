@@ -6,7 +6,7 @@ The purpose of this Hackathon is to implement the proposed design in 28 nm PDK (
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Problem with Typical LDO voltage regulator](#Problem-with-Typical-LDO-voltage-regulator)
-3. [Capacitive Feedback for Frequency Compensation (Proposed Scheme)](#Capacitive-Feedback-for-Frequency-Compensation-Proposed-Scheme)
+3. [Capacitive Feedback for Frequency Compensation (Proposed Scheme)](#Capacitive-Feedback-for-Frequency-Compensation)
 4. [Design Considerations for the VCCS](#Design-Considerations-for-the-VCCS)
 5. [Error Amplifier](#Error-Amplifier)
 6. [Pass Transistor](#Pass-Transistor)
@@ -30,7 +30,7 @@ The choice of a voltage regulator for a given  application offers numerous desig
 This design gives an overview of stability problems in LDO voltage regulators and presents a modified LDO voltage regulator topology. Although the compensating circuit is very simple, the proposed topology successfully overcomes the problem of stability without significantly increasing the power consumption or die area.
 
 
-## Problem-with-Typical-LDO-voltage-regulator (Proposed Scheme)
+## Problem-with-Typical-LDO-voltage-regulator
 
 A closer look of a typical LDO voltage regulator reveals the fact that there are two low-frequency poles that need to be taken into consideration in evaluating the frequency response of the LDO’s closed-loop transfer function. One of the poles lies at the output of the regulator and the other one at the gate of the pass transistor.
 There are, at least, two additional parasitic poles present in the LDO regulator. The third pole is lumped to the noninverting terminal of the error amplifier as a result of the input stage parasitic capacitors.
