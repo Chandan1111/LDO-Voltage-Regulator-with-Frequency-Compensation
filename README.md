@@ -23,7 +23,7 @@ The purpose of this Hackathon is to implement the proposed design in 28 nm PDK (
 
 ## Introduction
 
-POWER management is a very important issue in portable  electronic applications. The need for  multiple  on-chip voltage levels makes voltage regulators a critical part of an electronic system design. Portable electronic devices like cell phones require very efficient power management to increase the battery life whereas high-speed microprocessors need stable voltages that can supply fast varying currents on the order of few amperes.
+POWER management  is  a very important  issue  in  portable  electronic applications. The  need for  multiple  on-chip  voltage levels makes voltage regulators a critical part of an electronic system design. Portable electronic devices like cell phones require very efficient power management to increase the battery life whereas high-speed microprocessors need stable voltages that can supply fast varying currents on the order of few amperes.
 
 The choice of a voltage regulator for a given  application offers numerous design tradeoff considerations.The emphasis on efficiency has made low dropout (LDO) regulators the most popular class of linear regulators. But this increase in efficiency is achieved at the cost of a compromise in stability of the regulator. LDO regulators have high output impedance; this impedance, along with the load capacitance, creates a low frequency pole and decreases the overall phase margin.
 
