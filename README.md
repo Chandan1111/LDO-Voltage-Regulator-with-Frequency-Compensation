@@ -49,25 +49,25 @@ The basic idea behind the capacitive feedback which is responsible for frequency
 The capacitor  is split into two frequency-dependent voltage-controlled current sources (VCCS) and grounded capacitors. The capacitor C1 and  the VCCS connected to vout do not significantly  alter  the voltage at that node since  CL is of severa l microfarads, whereas  C1  is on the order of few picofarads. It should also be noted that the  capacitor connected to vx is responsible for the additional pole Wp3; therefore it is eliminated to arrive to the final configuration of Fig. 1. This configuration generates the required zero; the LDO becomes a  two-loop  system. The VCCS is  a differentiator that increases the loop gain at high frequencies. The loop gain transfer function of the regulator with this configuration has one zero and two poles.
 
 <p align="center">
-	<img width="500" src="https://user-images.githubusercontent.com/20799294/155711189-ea65db89-bfe8-4918-9830-8b7f14f0f53a.png" alt="LDO voltage regulator topology with proposed frequency compensation"> 
+	<img width="600" src="https://user-images.githubusercontent.com/20799294/155711189-ea65db89-bfe8-4918-9830-8b7f14f0f53a.png" alt="LDO voltage regulator topology with proposed frequency compensation"> 
 	<h5 align="center">Figure 2: LDO voltage regulator topology with proposed frequency compensation</h5>
 </p>
 
 ## Design-Considerations-for-the-VCCS
 
-The transistor-level design challenge lies in realizing the frequency dependent VCCS with minimum die area and minimum power consumption while retaining the VCCS characteristics up to crossover  frequency of the loop  transfer function. The  simplest  realization of  this  circuit  and  transconductance gain enhanced structure is shown in Fig. 2(a) and 2(b) respectively.The bias current can be selected to meet the objective of minimal standby current; the limit is however determined by the frequency of its parasitic pole.
+The transistor-level design challenge lies in realizing the frequency dependent VCCS with minimum die area and minimum power consumption while retaining the VCCS characteristics up to crossover  frequency of the loop  transfer function. The  simplest  realization of  this  circuit  and  transconductance gain enhanced structure is shown in Fig. 3(a) and 3(b) respectively.The bias current can be selected to meet the objective of minimal standby current; the limit is however determined by the frequency of its parasitic pole.
 
 <p align="center">
-	<img width="500" src="https://user-images.githubusercontent.com/20799294/155713863-b5b07387-6fbf-489c-8b5f-af0f3b091978.png" alt="LDO voltage regulator topology with proposed frequency compensation"> 
-	<h5 align="center">Figure 2: Simplest realization of frequency dependent VCCS. (a) Simplest realization and (b) transconductance gain enhanced structure.</h5>
+	<img width="600" src="https://user-images.githubusercontent.com/20799294/155713863-b5b07387-6fbf-489c-8b5f-af0f3b091978.png" alt="LDO voltage regulator topology with proposed frequency compensation"> 
+	<h5 align="center">Figure 3: Simplest realization of frequency dependent VCCS. (a) Simplest realization and (b) transconductance gain enhanced structure.</h5>
 </p>
 
 We need to improve the effective transconductance by increasing the bias current drastically increases the power consumption ( scales proportional to the square root of bias current). Therefore, alternate Gm enhancement techniques should be explored.
-The transistor realization is shown in Fig. 3. The circuit consists of three parts. The first stage acts as a level-shifting buffer needed to down-shift the dc level which can be very close to  the  supply  voltage due to LDO characteristics of the regulator. The next stage is with enhancing OTA in feedback. The third stage consists of a 1:5 current mirror and bias sources that together perform  the  function of pumping the ac current through output. We can take advantage of a multiplication factor in the current mirror to increase the effective capacitance from 5 to 25 pF. Cascode current mirror and cascode bias current sources (bias by proper dc voltages and ) are used such that offset current is not significant enough to upset the dc output voltage of the regulator.
+The transistor realization is shown in Fig. 4. The circuit consists of three parts. The first stage acts as a level-shifting buffer needed to down-shift the dc level which can be very close to  the  supply  voltage due to LDO characteristics of the regulator. The next stage is with enhancing OTA in feedback. The third stage consists of a 1:5 current mirror and bias sources that together perform  the  function of pumping the ac current through output. We can take advantage of a multiplication factor in the current mirror to increase the effective capacitance from 5 to 25 pF. Cascode current mirror and cascode bias current sources (bias by proper dc voltages and ) are used such that offset current is not significant enough to upset the dc output voltage of the regulator.
 
 <p align="center">
 	<img width="500" src="https://user-images.githubusercontent.com/20799294/155715916-4db711cd-1797-46e6-8a12-5e8218ad71c9.png" alt="Transistor level implementation of VCCS with G enhancement"> 
-	<h5 align="center">Figure 3: Transistor level implementation of VCCS with Gm enhancement.</h5>
+	<h5 align="center">Figure 4: Transistor level implementation of VCCS with Gm enhancement.</h5>
 </p>
 
 ## Error-Amplifier
@@ -81,7 +81,7 @@ High output impedance of the error amplifier pushes the pole at the input of the
 
 <p align="center">
 	<img width="500" src="https://user-images.githubusercontent.com/20799294/155718678-27dd0311-fc2b-4674-9ede-64ff72bd6c04.png" alt="Transistor level implementation of amplifier"> 
-	<h5 align="center">Figure 4: Transistor level implementation of error amplifier.</h5>
+	<h5 align="center">Figure 5: Transistor level implementation of error amplifier.</h5>
 </p>
 
 ## Pass-Transistor
@@ -109,26 +109,26 @@ When the load current is decreased instantaneously, the extra current from the o
 
 <p align="center">
 	<img width="550" src="https://user-images.githubusercontent.com/20799294/155721410-34830e30-5fda-4fbd-8e00-908608cd165a.png" alt="Transistor level implementation of amplifier"> 
-	<h5 align="center">Figure 5: Schematic of LDO voltage regulator topology with proposed frequency compensation.</h5>
+	<h5 align="center">Figure 6: Schematic of LDO voltage regulator topology with proposed frequency compensation.</h5>
 </p>
 
 ### Schematic and symbol of Voltage controlled current source (VCCS) .
 
 <p align="center">
 	<img width="500" src="https://user-images.githubusercontent.com/20799294/155722237-004e5786-a87b-48bf-b52d-f80b4eec59a2.png" alt="Schematic of Voltage controlled current source (VCCS)"> 
-	<h5 align="center">Figure 6: Schematic of Voltage controlled current source (VCCS).</h5>
+	<h5 align="center">Figure 7: Schematic of Voltage controlled current source (VCCS).</h5>
 </p>
 
 <p align="center">
 	<img width="400" src="https://user-images.githubusercontent.com/20799294/155722514-82b5f99a-9c02-41bb-a9bc-f388c28d461e.png" alt="Symbol of Voltage controlled current source (VCCS)"> 
-	<h5 align="center">Figure 7: Symbol of Voltage controlled current source (VCCS).</h5>
+	<h5 align="center">Figure 8: Symbol of Voltage controlled current source (VCCS).</h5>
 </p>
 
 ### Schematic and symbol of Error Amplifier .
 
 <p align="center">
 	<img width="500" src="https://user-images.githubusercontent.com/20799294/155723177-adb88f20-6183-4933-9e7f-6b8a3bc6e58c.png" alt="Schematic of Error Amplifier"> 
-	<h5 align="center">Figure 8: Schematic of Error Amplifier.</h5>
+	<h5 align="center">Figure 9: Schematic of Error Amplifier.</h5>
 </p>
 
 <p align="center">
@@ -222,7 +222,12 @@ MM13 Vout net34 vdd vdd p105_lvt w=0.182000m l=0.03u nf=52 m=1
 
 ## Simulation result
 
-- Custom Compiler Waveform
+
+### Using PrimeWave Design Environment.
+
+
+
+### NOTE : Click on images if waveform is not clearly visible.
 
 <p align="center">
 	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155723745-067eacce-52c3-46be-9a14-50ca24175b74.png" alt="refference ICG Trans"> 
