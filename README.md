@@ -117,14 +117,14 @@ When the load current is decreased instantaneously, the extra current from the o
 ### Schematic of LDO voltage regulator topology with proposed frequency compensation.
 
 <p align="center">
-	<img width="550" src="https://user-images.githubusercontent.com/20799294/155721410-34830e30-5fda-4fbd-8e00-908608cd165a.png" alt="Transistor level implementation of amplifier"> 
+	<img width="800" src="https://user-images.githubusercontent.com/20799294/155721410-34830e30-5fda-4fbd-8e00-908608cd165a.png" alt="Transistor level implementation of amplifier"> 
 	<h5 align="center">Figure 6: Schematic of LDO voltage regulator topology with proposed frequency compensation.</h5>
 </p>
 
 ### Schematic and symbol of Voltage controlled current source (VCCS) .
 
 <p align="center">
-	<img width="500" src="https://user-images.githubusercontent.com/20799294/155722237-004e5786-a87b-48bf-b52d-f80b4eec59a2.png" alt="Schematic of Voltage controlled current source (VCCS)"> 
+	<img width="800" src="https://user-images.githubusercontent.com/20799294/155722237-004e5786-a87b-48bf-b52d-f80b4eec59a2.png" alt="Schematic of Voltage controlled current source (VCCS)"> 
 	<h5 align="center">Figure 7: Schematic of Voltage controlled current source (VCCS).</h5>
 </p>
 
@@ -136,7 +136,7 @@ When the load current is decreased instantaneously, the extra current from the o
 ### Schematic and symbol of Error Amplifier .
 
 <p align="center">
-	<img width="500" src="https://user-images.githubusercontent.com/20799294/155723177-adb88f20-6183-4933-9e7f-6b8a3bc6e58c.png" alt="Schematic of Error Amplifier"> 
+	<img width="800" src="https://user-images.githubusercontent.com/20799294/155723177-adb88f20-6183-4933-9e7f-6b8a3bc6e58c.png" alt="Schematic of Error Amplifier"> 
 	<h5 align="center">Figure 9: Schematic of Error Amplifier.</h5>
 </p>
 
@@ -308,8 +308,9 @@ This Design presented a novel  LDO  regulator topology aiming at more robust  fr
 - [Kunal Ghosh](https://github.com/kunalg123), Founder, VSD Corp. Pvt. Ltd
 - [Indian Institute Of Technology (IIT), Hyderabad](https://iith.ac.in/)
 - [Synopsys](https://www.synopsys.com/)
+- [Chinmay panda, IIT Hyderabad](https://www.iith.ac.in/events/2022/02/15/Cloud-Based-Analog-IC-Design-Hackathon/)
 - [Qadeer Ahmad Khan](https://www.ee.iitm.ac.in/qkhan/),Assistant Professor,Indian Institute of Technology Madras.
-- [Behzad Razavi](https://en.wikipedia.org/wiki/Behzad_Razavi)
+- [Behzad Razavi](https://en.wikipedia.org/wiki/Behzad_Razavi),Professor of Electrical Engineering, UCLA.
 
 ## Author
 
