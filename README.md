@@ -133,7 +133,7 @@ When the load current is decreased instantaneously, the extra current from the o
 
 <p align="center">
 	<img width="350" src="https://user-images.githubusercontent.com/20799294/155723188-614880f0-df92-44fb-bd89-6f25390d0b9b.png" alt="Symbol of Error Amplifier"> 
-	<h5 align="center">Figure 9: Symbol of Error Amplifier.</h5>
+	<h5 align="center">Figure 10: Symbol of Error Amplifier.</h5>
 </p>
 
 
@@ -231,42 +231,42 @@ MM13 Vout net34 vdd vdd p105_lvt w=0.182000m l=0.03u nf=52 m=1
 
 <p align="center">
 	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155723745-067eacce-52c3-46be-9a14-50ca24175b74.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 9: Experimental LDO output voltage as function of the load current.</h5>
+	<h5 align="center">Figure 11: Experimental LDO output voltage as function of the load current.</h5>
 </p>.
 
 <p align="center">
 	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155725336-9aa2fcb6-fbb9-4bb6-ba8b-7799c032ef16.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 10: LDO output voltage and load current over the Parametric sweep of Rload .</h5>
+	<h5 align="center">Figure 12: LDO output voltage and load current over the Parametric sweep of Rload .</h5>
 </p>.
 
 <p align="center">
 	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155725493-37c0a2ce-a8d5-42ca-a4e3-6ffea36d46fd.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 10: Tabulated values of LDO output voltage and load current over the Parametric sweep of Rload .</h5>
+	<h5 align="center">Figure 13: Tabulated values of LDO output voltage and load current over the Parametric sweep of Rload .</h5>
 </p>.
 
 <p align="center">
 	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155724285-fbf29eee-ad57-4b43-b154-0b3219819333.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 11: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA without improved compensation.</h5>
+	<h5 align="center">Figure 14: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA without improved compensation.</h5>
 </p>.
 
 <p align="center">
 	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155724585-b6b5b6a6-4c77-4599-bd81-6c255663d1b9.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 12: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA with improved compensation.</h5>
+	<h5 align="center">Figure 15: Load regulation characteristics of the LDO regulator as output current is varied from 1 to 40 mA with improved compensation.</h5>
 </p>.
 
 <p align="center">
 	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155751928-432bd821-2512-4281-a1aa-345d39d223eb.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 13: Transient ouput voltage of the LDO regulator as Vref is varied without improved compensation.</h5>
+	<h5 align="center">Figure 16: Transient ouput voltage of the LDO regulator as Vref is varied without improved compensation.</h5>
 </p>.
 
 <p align="center">
 	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155751939-b933dd0d-24e2-4236-836b-bc5b0dff71c0.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 14: Transient ouput voltage of the LDO regulator as Vref is varied with improved compensation.</h5>
+	<h5 align="center">Figure 17: Transient ouput voltage of the LDO regulator as Vref is varied with improved compensation.</h5>
 </p>.
 
 <p align="center">
 	<img width="1100" src="https://user-images.githubusercontent.com/20799294/155752589-022273c4-8099-4c7b-959b-eac66f93f30f.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 15: Start-up time of the regulator for a load current of 2 mA..</h5>
+	<h5 align="center">Figure 18: Start-up time of the regulator for a load current of 2 mA..</h5>
 </p>.
 
 
@@ -274,7 +274,7 @@ MM13 Vout net34 vdd vdd p105_lvt w=0.182000m l=0.03u nf=52 m=1
 
 <p align="center">
 	<img width="600" src="https://user-images.githubusercontent.com/20799294/155965636-6ea59d46-f880-4f62-a33a-69a58d2325ff.png" alt="refference ICG Trans"> 
-	<h5 align="center">Figure 16: Local Power Supplies Using Integrated LDO Regulators.</h5>
+	<h5 align="center">Figure 19: Local Power Supplies Using Integrated LDO Regulators.</h5>
 </p>.
 
 ## Challenges Faced
