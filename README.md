@@ -314,4 +314,4 @@ This Design presented a novel  LDO  regulator topology aiming at more robust  fr
 
 ## Author
 
-[Chandan K](https://github.com/Chandan1111), MTech in VLSI Design at Vellore Institute of Technology
+[Chandan K](https://github.com/Chandan1111), MTech in VLSI Design at Vellore Institute of Technology, Vellore.
