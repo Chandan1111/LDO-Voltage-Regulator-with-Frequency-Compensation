@@ -1,7 +1,7 @@
 # LDO-Voltage-Regulator-with-Frequency-Compensation
 The purpose of this Hackathon is to implement the proposed design in 28 nm PDK (Process Design Kit).
 
- As a result of literature survey and Implemantation, this is a final Report Submission for successful completion of LDO-Voltage-Regulator-with-Frequency-Compensation design and simulation, for [Cloud Based Analog IC Design Hackathon](https://www.iith.ac.in/events/2022/02/15/Cloud-Based-Analog-IC-Design-Hackathon/)
+ As a result of literature survey and Implemantation, this is a final Report Submission for successful completion of LDO Voltage Regulator with Frequency Compensation design and simulation, for [Cloud Based Analog IC Design Hackathon](https://www.iith.ac.in/events/2022/02/15/Cloud-Based-Analog-IC-Design-Hackathon/)
 
 ## Table of Contents
 1. [Introduction](#introduction)
