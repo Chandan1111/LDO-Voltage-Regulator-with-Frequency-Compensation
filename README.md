@@ -6,7 +6,7 @@ The purpose of this Hackathon is to implement the proposed design in 28 nm PDK (
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Problem with Typical LDO voltage regulator](#Problem-with-Typical-LDO-voltage-regulator)
-3. [Capacitive Feedback for Frequency Compensation](#Capacitive-Feedback-for-Frequency-Compensation)
+3. [Capacitive Feedback for Frequency Compensation (Proposed Scheme)](#Capacitive-Feedback-for-Frequency-Compensation-Proposed-Scheme)
 4. [Design Considerations for the VCCS](#Design-Considerations-for-the-VCCS)
 5. [Error Amplifier](#Error-Amplifier)
 6. [Pass Transistor](#Pass-Transistor)
@@ -14,6 +14,9 @@ The purpose of this Hackathon is to implement the proposed design in 28 nm PDK (
 9. [Implementation](#implementation)
 10. [Schematic Netlist](#schematic-netlist)
 11. [Simulation result](#simulation-result)
+12. [Applications of LDO Regulators](#Applications-of-LDO-Regulators)
+13. [Challenges Faced](#Challenges-Faced)
+14. [Conclusion](#Conclusion)
 15. [References](#references)
 16. [Acknowledgements](#acknowledgements)
 17. [Author](#author)
@@ -27,7 +30,7 @@ The choice of a voltage regulator for a given  application offers numerous desig
 This design gives an overview of stability problems in LDO voltage regulators and presents a modified LDO voltage regulator topology. Although the compensating circuit is very simple, the proposed topology successfully overcomes the problem of stability without significantly increasing the power consumption or die area.
 
 
-## Problem-with-Typical-LDO-voltage-regulator
+## Problem-with-Typical-LDO-voltage-regulator (Proposed Scheme)
 
 A closer look of a typical LDO voltage regulator reveals the fact that there are two low-frequency poles that need to be taken into consideration in evaluating the frequency response of the LDO’s closed-loop transfer function. One of the poles lies at the output of the regulator and the other one at the gate of the pass transistor.
 There are, at least, two additional parasitic poles present in the LDO regulator. The third pole is lumped to the noninverting terminal of the error amplifier as a result of the input stage parasitic capacitors.
@@ -87,8 +90,17 @@ The important design consideration for the pass transistor is the dropout voltag
 
 ## Working
 
+Linear regulators are responsible for providing a stable supply voltage to a load circuit, regardless of how much current the load circuitry is consuming. As shown in Figure 2, a regulator is comprised of a power transistor and a control feedback loop. The power transistor is responsible for providing the necessary current to the load. The control circuitry that implements  is placed in a feedback loop to drive the power transistor such that the output of the regulator is regulated to the desired voltage. For integrated circuits, the load is typically a current source in parallel with a load capacitance.
 
+### Feedback Mechanism
 
+(1) When load current is increasing:-
+
+When load current is increased instantaneously, the load capacitor supplies the extra current and the capacitor voltage drops. This drop in output voltage is sensed by the feedback circuit which in turn pulls down the gate of the pMOS pass transistor thus turning it on and supplying the output current needed by the capacitor and load impedance. Since the compensating circuit is a differentiator, it helps increasing the loop feedback for fast output variations. On the other hand, if ESR is used, the instantaneous current flows through the resistor increasing further the overshoots at the LDO output, especially if large ESR is used.
+
+(2) When load current is decreasing:-
+
+When the load current is decreased instantaneously, the extra current from the output of the pass transistor charges the output capacitor to a higher than nominal voltage. The feedback loop reacts by switching the error amplifier to positive saturation limit thereby turning off the pass transistor. The excess charge on the output capacitor is discharged through the feedback resistors; hence the discharge time is large because R1 and R2 are in the range of hundreds of kilo ohms.
 
 
 ## Implementation 
@@ -253,6 +265,22 @@ MM13 Vout net34 vdd vdd p105_lvt w=0.182000m l=0.03u nf=52 m=1
 </p>.
 
 
+## Applications of LDO Regulators
+
+<p align="center">
+	<img width="600" src="https://user-images.githubusercontent.com/20799294/155965636-6ea59d46-f880-4f62-a33a-69a58d2325ff.png" alt="refference ICG Trans"> 
+	<h5 align="center">Figure 16: Local Power Supplies Using Integrated LDO Regulators.</h5>
+</p>.
+
+## Challenges Faced
+
+-Meeting the error amplifier design demands which is the high dc gain ( > 60 dB) and low output impedance.
+
+
+## Conclusion
+
+This Design presented a novel  LDO  regulator topology aiming at more robust  frequency compensation by getting rid of the dependence on ESR of the output capacitor. A detailed description of the implementation of the topology in CMOS technology is presented. Although the compensating scheme is very simple, the resulting structure provides better load regulation especially in  turn-off transients. It is  also proven that the topology does not consume significantly higher ground current nor die area compared to a conventional LDO regulator and does not adversely affect the power supply regulation or start-up time. The measured  results show that output integrated noise is reduced compared to the conventional implementation ESR realization.
+
 ## References
 
 - [A Frequency Compensation Scheme for LDO Voltage Regulators ](https://ieeexplore.ieee.org/document/1304961)
@@ -266,6 +294,8 @@ MM13 Vout net34 vdd vdd p105_lvt w=0.182000m l=0.03u nf=52 m=1
 - [Kunal Ghosh](https://github.com/kunalg123), Founder, VSD Corp. Pvt. Ltd
 - [Indian Institute Of Technology (IIT), Hyderabad](https://iith.ac.in/)
 - [Synopsys](https://www.synopsys.com/)
+- [Qadeer Ahmad Khan](https://www.ee.iitm.ac.in/qkhan/),Assistant Professor,Indian Institute of Technology Madras.
+- [Behzad Razavi](https://en.wikipedia.org/wiki/Behzad_Razavi)
 
 ## Author
 
